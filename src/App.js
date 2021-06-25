@@ -1,23 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import ExplodedView from './components/ExplodedView';
 
 function App() {
+
+  const initialCubeState={
+    front:[
+    ["green","green","green"],
+    ["green","green","green"],
+    ["green","green","green"]
+  ],
+
+  right:[
+    ["red","red","red"],
+    ["red","red","red"],
+    ["red","red","red"]
+  ],
+
+  up:[
+    ["white","white","white"],
+    ["white","white","white"],
+    ["white","white","white"]
+  ],
+
+  back:[
+    ["blue","blue","blue"],
+    ["blue","blue","blue"],
+    ["blue","blue","blue"]
+  ],
+
+  left:[
+    ["orange","orange","orange"],
+    ["orange","orange","orange"],
+    ["orange","orange","orange"]
+  ],
+
+down:[
+  ["yellow","yellow","yellow"],
+  ["yellow","yellow","yellow"],
+  ["yellow","yellow","yellow"]
+]
+
+  }
+ 
+  const [cubeState,setCubeState]=useState(initialCubeState)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+     <h1>hello world</h1>
+   <ExplodedView cubeState={cubeState}/>
     </div>
   );
 }
