@@ -11,16 +11,13 @@ rowComponents.push(<FaceRow rowArray={props.arr[i]} key={i} rowId={i}/>)
 
  }
 
-//  rowComponents.push(<tr><td>a</td><td>b</td><td>c</td></tr>) 
-//  rowComponents.push(<tr><td>d</td><td>e</td><td>f</td></tr>) 
-//  rowComponents.push(<tr><td>g</td><td>h</td><td>i</td></tr>) 
 
-    return ( <div> 
-    <table>
+    return (  
+    <table id={props.id}>
         <tbody >
            {rowComponents}
         </tbody>
-    </table></div> );
+    </table> );
 }
  
 export default Face;

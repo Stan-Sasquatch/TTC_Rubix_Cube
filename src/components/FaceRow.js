@@ -9,7 +9,7 @@ const FaceRow = (props) => {
 
 
         const concatId=`${props.rowId}${i}`
-        tileComponents.push(<td style={{backgroundColor: props.rowArray[i]}} key={concatId} id={concatId}>{props.rowArray[i]}</td>)
+        tileComponents.push(<td style={{backgroundColor: props.rowArray[i]}} key={concatId} id={concatId}></td>)
         
 
         

@@ -1,4 +1,4 @@
-import './App.css';
+import './CSS/App.css'
 import React, { useState } from 'react';
 import ExplodedView from './components/ExplodedView';
 
@@ -47,9 +47,11 @@ down:[
 
   return (
     <div className="App">
-     
-     <h1>hello world</h1>
+
+     <h1>Stephen's Rubix Cube Simulator</h1>
+
    <ExplodedView cubeState={cubeState}/>
+   
     </div>
   );
 }
