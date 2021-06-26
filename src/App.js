@@ -50,7 +50,8 @@ down:[
 
      <h1>Stephen's Rubix Cube Simulator</h1>
 
-   <ExplodedView cubeState={cubeState}/>
+   <ExplodedView cubeState={cubeState} setCubeState={setCubeState}/>
+   
    
     </div>
   );

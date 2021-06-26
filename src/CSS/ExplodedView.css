@@ -9,6 +9,17 @@ grid-row-gap: 0.125em;
 margin: auto;
 width: 65vw;
 }
+.panel-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.button-panel{
+    display: flex;
+    justify-content: space-between; 
+}
 
 td {
     border: 0.125em solid rgb(32, 22, 22);
@@ -46,8 +57,4 @@ td {
     grid-row: 3;
 }
 
-
-td {
-  border: 0.125em solid rgb(32, 22, 22);
-}
 

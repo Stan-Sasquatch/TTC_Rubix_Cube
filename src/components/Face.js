@@ -4,7 +4,7 @@ import FaceRow from "./FaceRow";
 const Face = (props) => {
     const rowComponents = []
  
- for (let i in props.arr){
+ for (let i =0; i<props.arr.length; i++){
 
 
 rowComponents.push(<FaceRow rowArray={props.arr[i]} key={i} rowId={i}/>)

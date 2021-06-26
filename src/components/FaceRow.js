@@ -5,7 +5,7 @@ const FaceRow = (props) => {
 
    
     
-    for (let i in props.rowArray){
+    for (let i=0;i< props.rowArray.length;i++){
 
 
         const concatId=`${props.rowId}${i}`
