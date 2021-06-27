@@ -5,24 +5,24 @@ import '../CSS/ExplodedView.css'
 import { functionsObj } from '../utils/functions';
 const ExplodedView = (props) => {
     
-    useEffect(()=>{console.log(props.cubeState)},[props.cubeState])
+    // useEffect(()=>{console.log(props.cubeState)},[props.cubeState])
 
     const buttonPanelOne=[
     {onClick:()=> {props.setCubeState(functionsObj.front(props.cubeState))},text:"F"},
-    {onClick:functionsObj.right,text:"R"},
-    {onClick:functionsObj.up,text:"U"},
-    {onClick:functionsObj.back,text:"B"},
-    {onClick:functionsObj.left,text:"L"},
-    {onClick:functionsObj.down,text:"D"},
+    {onClick:()=> {props.setCubeState(functionsObj.right(props.cubeState))},text:"R"},
+    {onClick:()=> {props.setCubeState(functionsObj.up(props.cubeState))},text:"U"},
+    {onClick:()=> {props.setCubeState(functionsObj.back(props.cubeState))},text:"B"},
+    {onClick:()=> {props.setCubeState(functionsObj.left(props.cubeState))},text:"L"},
+    {onClick:()=> {props.setCubeState(functionsObj.down(props.cubeState))},text:"D"}
 ]
 
 const buttonPanelTwo=[
-    {onClick:functionsObj.frontAnti,text:"F'"},
-    {onClick:functionsObj.rightAnti,text:"R'"},
-    {onClick:functionsObj.upAnti,text:"U'"},
-    {onClick:functionsObj.backAnti,text:"B'"},
-    {onClick:functionsObj.leftAnti,text:"L'"},
-    {onClick:functionsObj.downAnti,text:"D'"},
+    {onClick:()=> {props.setCubeState(functionsObj.frontAnti(props.cubeState))},text:"F'"},
+    {onClick:()=> {props.setCubeState(functionsObj.rightAnti(props.cubeState))},text:"R'"},
+    {onClick:()=> {props.setCubeState(functionsObj.upAnti(props.cubeState))},text:"U'"},
+    {onClick:()=> {props.setCubeState(functionsObj.backAnti(props.cubeState))},text:"B'"},
+    {onClick:()=> {props.setCubeState(functionsObj.leftAnti(props.cubeState))},text:"L'"},
+    {onClick:()=> {props.setCubeState(functionsObj.downAnti(props.cubeState))},text:"D'"}
 ]
     
     
