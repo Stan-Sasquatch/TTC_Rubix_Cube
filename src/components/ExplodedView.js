@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Face from "./Face";
 import ButtonPanel from './ButtonPanel';
 import '../CSS/ExplodedView.css'
 import { functionsObj } from '../utils/functions';
 const ExplodedView = (props) => {
     
-    // useEffect(()=>{console.log(props.cubeState)},[props.cubeState])
+
 
     const buttonPanelOne=[
     {onClick:()=> {props.setCubeState(functionsObj.front(props.cubeState))},text:"F"},
