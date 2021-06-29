@@ -28,7 +28,7 @@ const buttonPanelTwo=[
     
     return ( <div className="container">
              
-             <div className="panel-container"> <ButtonPanel panelArr={buttonPanelOne}/></div><Face arr={props.cubeState.up} key="up" id="up"/><div className="panel-container"><ButtonPanel panelArr={buttonPanelTwo}/></div> 
+             <div className="panel-container" id="clockwise-panel"> <ButtonPanel panelArr={buttonPanelOne}/></div><Face arr={props.cubeState.up} key="up" id="up"/><div className="panel-container" id="anticlockwise-panel"><ButtonPanel panelArr={buttonPanelTwo}/></div> 
 
                                     <Face arr={props.cubeState.left} key="left"  id="left"/><Face arr={props.cubeState.front} key="front" id="front"/><Face arr={props.cubeState.right} key="right"  id="right"/><Face arr={props.cubeState.back} key="back" id="back"/>
 

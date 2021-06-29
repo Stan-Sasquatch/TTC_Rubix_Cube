@@ -1,4 +1,33 @@
- const columnToRow=(cubeState, faceOne,faceTwo,column,row)=>{
+ //Add Rotate face method
+ 
+ const rotateArray=(arr)=>{
+
+    const newArr=[]
+
+    for (let j=0; j<arr.length;j++){
+        const newRow=[]
+        for (let i=2;i>=0;i--){
+        newRow.push(arr[i][j])
+    }
+    newArr.push(newRow)
+    
+    }
+
+    return newArr
+
+}
+ 
+ 
+ const rotateFace=(cubeState,face)=>{
+
+const copyCubeState=JSON.parse(JSON.stringify(cubeState))
+const faceArr=copyCubeState[face]
+
+return rotateArray(faceArr)
+
+ }
+ 
+ const columnToRow=(cubeState, faceOne,faceTwo,column,row,reverse)=>{
 
 //Stringify and Parse to prevent mutation of cubeState object from splice
     const copyCubeState=JSON.parse(JSON.stringify(cubeState))
@@ -8,9 +37,13 @@
     const rowArr=copyCubeState[faceTwo]
     let newRow=[]
 
+   
 
     for (let i =0; i<columnArr.length;i++){
-        newRow.push(columnArr[i][column])
+
+        const orderIndex=reverse?i:columnArr.length-i-1
+
+        newRow.push(columnArr[orderIndex][column])
     }
     
     rowArr.splice(row,1,newRow)
@@ -19,7 +52,7 @@
         return rowArr
     }
     
-const rowToColumn=(cubeState,faceOne,faceTwo,row,column)=>{
+const rowToColumn=(cubeState,faceOne,faceTwo,row,column,reverse)=>{
 //Stringify and Parse to prevent mutation of cubeState object from splice
     const copyCubeState=JSON.parse(JSON.stringify(cubeState))
 
@@ -27,8 +60,10 @@ const rowToColumn=(cubeState,faceOne,faceTwo,row,column)=>{
     const columnArr=copyCubeState[faceTwo]
 
         for(let i=0; i<rowArr[row].length;i++){
-    
-            columnArr[i].splice(column,1,rowArr[row][i])
+
+       const orderIndex=reverse?rowArr.length -i-1:i
+
+            columnArr[i].splice(column,1,rowArr[row][orderIndex])
     
         }
     
@@ -36,23 +71,30 @@ const rowToColumn=(cubeState,faceOne,faceTwo,row,column)=>{
     
     }
 
-    const columnToColumn=(cubeState,faceOne,faceTwo,colOne,colTwo)=>{
 
-    const copyCubeState=JSON.parse(JSON.stringify(cubeState))
-      
-      const arrOne=copyCubeState[faceOne]
-      const arrTwo=copyCubeState[faceTwo]
-      
-      for(let i=0;i<arrOne.length;i++){
-      
-      
-      arrTwo[i].splice(colTwo,1,arrOne[i][colOne])
-      
-      }
-      
-      return arrTwo
-      
-        }
+
+const columnToColumn=(cubeState,faceOne,faceTwo,colOne,colTwo,reverse)=>{
+
+
+
+            const copyCubeState=JSON.parse(JSON.stringify(cubeState))
+              
+              const arrOne=copyCubeState[faceOne]
+              const arrTwo=copyCubeState[faceTwo]
+              
+              for(let i=0;i<arrOne.length;i++){
+              
+            const orderIndex=reverse?arrOne.length -i-1:i
+              
+              arrTwo[i].splice(colTwo,1,arrOne[orderIndex][colOne])
+              
+              }
+              
+              return arrTwo
+              
+                }
+
+
 
 const rowToRow=(cubeState,faceOne,faceTwo,rowOne,rowTwo)=>{
 
@@ -72,73 +114,28 @@ const rowToRow=(cubeState,faceOne,faceTwo,rowOne,rowTwo)=>{
             return arrTwo
               }
     
-// const createNewCubeState=(cubeState,algorithmObj)=>{
-// //algorithm obj is where vertexType is row or column [{face:a, vertexType:b, index:c},...]
-// const newCubeState={...cubeState}
-
-// const getMethod=(algorithmObj,i,previous)=>{
-
-    
-
-//     if(algorithmObj[previous]["vertexType"]=="row"){
-//  if(algorithmObj[i]["vertexType"]=="row"){
- 
-//  return rowToRow
- 
-//  }
-//  return rowToColumn
- 
-//     }
-
-// if(algorithmObj[i]["vertexType"]=="column"){
-
-//     return columnToColumn
-// }
-
-// return columnToRow
-
-// }
-
-
-// for (let i=0;i<algorithmObj.length;i++){
-
-//     const previous = i=0?algorithmObj.length:i-1;
-//    const prevFace=algorithmObj[previous]["face"]
-//    const currentFace=algorithmObj[i]["face"]
-//    const prevIndex=algorithmObj[previous]["index"]
-//    const currentIndex=algorithmObj[i]["index"]
-  
-//     newCubeState.algorithmObj[i]["face"]=getMethod(algorithmObj,i,previous)(cubeState,prevFace,currentFace,prevIndex,currentIndex)
-// }
-
-
-// return newCubeState
-// }
 
 const frontClockwise=(cubeState)=>{
   //left column 2 -> up row 2 ->right column 0->down row 0
 
-//   const algorithmObj=[
-//     {face:"left",vertexType:"column",index:2},
-//     {face:"up",vertexType:"row",index:2},
-//     {face:"right",vertexType:"column",index:0},
-//     {face:"down",vertexType:"row",index:0}
-// ]
-// return createNewCubeState(cubeState,algorithmObj)
-
-
 const newCubeState={
 ...cubeState,
+
+front:rotateFace(cubeState,"front"),
+
 right:rowToColumn(cubeState,"up","right",2,0),
+
 up:columnToRow(cubeState,"left","up",2,2),
+
 left:rowToColumn(cubeState,"down","left",0,2),
+
 down:columnToRow(cubeState,"right","down",0,0)
+
 }
 
 return newCubeState
 
 }
-
 
 const rightClockwise=(cubeState)=>{
 //front col 2 -> up col 2 -> back col 0 -> down col 2
@@ -146,39 +143,66 @@ const rightClockwise=(cubeState)=>{
     const newCubeState={
         ...cubeState,
 front: columnToColumn(cubeState,"down","front",2,2),
+
+right:rotateFace(cubeState,"right"),
+
 up: columnToColumn(cubeState,"front","up",2,2),
-back: columnToColumn(cubeState,"up","back",2,0),
-down:columnToColumn(cubeState,"back","down",0,2)
+back: columnToColumn(cubeState,"up","back",2,0,true),
+down:columnToColumn(cubeState,"back","down",0,2,true)
         }
 
         return newCubeState
 }
 
+
+
 const upClockwise=(cubeState)=>{
- 
-    
+ //front row 0 -> left row 0 -> back row 0 -> right row 0
+
         const newCubeState={
             ...cubeState,
+front: rowToRow(cubeState,"right","front",0,0),
+right: rowToRow(cubeState, "back","right",0,0),
 
+up:rotateFace(cubeState,"up"),
+
+back:rowToRow(cubeState,"left","back",0,0),
+left:rowToRow(cubeState,"front","left",0,0)
             }
     
             return newCubeState
     }
 const backClockwise=(cubeState)=>{
- 
-    
+ //right col 2 -> up row 0 -> left col 0 -> down row 2
+   
     const newCubeState={
         ...cubeState,
+
+right:  rowToColumn(cubeState, "down","right",2,2,true),
+up: columnToRow(cubeState,"right","up",2,0,true),
+
+back:rotateFace(cubeState,"back"),
+
+left: rowToColumn(cubeState,"up","left",0,0,true),
+down:columnToRow(cubeState,"left","down",0,2,true)
 
         }
 
         return newCubeState
 }
 const leftClockwise=(cubeState)=>{
- 
-    
+ //front col 0 -> down col 0 -> back col 2 -> up col 0
+
     const newCubeState={
         ...cubeState,
+front: columnToColumn(cubeState,"up","front",0,0),
+up:columnToColumn(cubeState,"back","up",2,0,true),
+back:columnToColumn(cubeState,"down","back",0,2,true),
+
+left:rotateFace(cubeState,"left"),
+
+down:columnToColumn(cubeState,"front","down",0,0)
+    
 
         }
 
@@ -186,10 +210,15 @@ const leftClockwise=(cubeState)=>{
 }
 
 const downClockwise=(cubeState)=>{
- 
-    
+ //front row 2 ->right row 2-> back row 2-> left row 2
     const newCubeState={
         ...cubeState,
+front:rowToRow(cubeState,"left","front",2,2),
+right:rowToRow(cubeState,"front","right",2,2),
+back: rowToRow(cubeState,"right","back",2,2),
+left:rowToRow(cubeState,"back","left",2,2),
+
+down:rotateFace(cubeState,"down")
 
         }
 
@@ -197,27 +226,33 @@ const downClockwise=(cubeState)=>{
 }
 
 const frontAntiClockwise=(cubeState)=>{
- 
-    const newCubeState={
-        ...cubeState,
 
-        }
+return frontClockwise(frontClockwise(frontClockwise(cubeState)))
 
-        return newCubeState
 }
-const rightAntiClockwise=()=>{
+const rightAntiClockwise=(cubeState)=>{
+
+return rightClockwise(rightClockwise(rightClockwise(cubeState)))
     
 }
-const upAntiClockwise=()=>{
+const upAntiClockwise=(cubeState)=>{
+    
+    return upClockwise(upClockwise(upClockwise(cubeState)))
+
+}
+const backAntiClockwise=(cubeState)=>{
+
+    return backClockwise(backClockwise(backClockwise(cubeState)))
     
 }
-const backAntiClockwise=()=>{
+const leftAntiClockwise=(cubeState)=>{
     
+return leftClockwise(leftClockwise(leftClockwise(cubeState)))
+
 }
-const leftAntiClockwise=()=>{
-    
-}
-const downAntiClockwise=()=>{
+const downAntiClockwise=(cubeState)=>{
+
+    return downClockwise(downClockwise(downClockwise(cubeState)))
     
 }
 
