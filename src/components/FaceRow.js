@@ -1,26 +1,13 @@
-import React from 'react';
+import React from "react";
 
 const FaceRow = (props) => {
-    let tileComponents=[]
+	return (
+		<tr>
+			{props.rowArray.map((element, index) => (
+				<td style={{ backgroundColor: element }} key={index} id={`${props.rowId}${index}`}></td>
+			))}
+		</tr>
+	);
+};
 
-   
-    
-    for (let i=0;i< props.rowArray.length;i++){
-
-
-        const concatId=`${props.rowId}${i}`
-        tileComponents.push(<td style={{backgroundColor: props.rowArray[i]}} key={concatId} id={concatId}></td>)
-        
-
-        
-
-         }
-
-
-
-
-
-    return ( <tr>{tileComponents}</tr> );
-}
- 
 export default FaceRow;

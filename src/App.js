@@ -1,60 +1,55 @@
-import './CSS/App.css'
-import React, { useState } from 'react';
-import ExplodedView from './components/ExplodedView';
+import "./CSS/App.css";
+import React, { useState } from "react";
+import ExplodedView from "./components/ExplodedView";
 
 function App() {
+	const initialCubeState = {
+		front: [
+			["green", "green", "green"],
+			["green", "green", "green"],
+			["green", "green", "green"],
+		],
 
-  const initialCubeState={
-    front:[
-    ["green","green","green"],
-    ["green","green","green"],
-    ["green","green","green"]
-  ],
+		right: [
+			["red", "red", "red"],
+			["red", "red", "red"],
+			["red", "red", "red"],
+		],
 
-  right:[
-    ["red","red","red"],
-    ["red","red","red"],
-    ["red","red","red"]
-  ],
+		up: [
+			["white", "white", "white"],
+			["white", "white", "white"],
+			["white", "white", "white"],
+		],
 
-  up:[
-    ["white","white","white"],
-    ["white","white","white"],
-    ["white","white","white"]
-  ],
+		back: [
+			["blue", "blue", "blue"],
+			["blue", "blue", "blue"],
+			["blue", "blue", "blue"],
+		],
 
-  back:[
-    ["blue","blue","blue"],
-    ["blue","blue","blue"],
-    ["blue","blue","blue"]
-  ],
+		left: [
+			["orange", "orange", "orange"],
+			["orange", "orange", "orange"],
+			["orange", "orange", "orange"],
+		],
 
-  left:[
-    ["orange","orange","orange"],
-    ["orange","orange","orange"],
-    ["orange","orange","orange"]
-  ],
+		down: [
+			["yellow", "yellow", "yellow"],
+			["yellow", "yellow", "yellow"],
+			["yellow", "yellow", "yellow"],
+		],
+	};
 
-down:[
-  ["yellow","yellow","yellow"],
-  ["yellow","yellow","yellow"],
-  ["yellow","yellow","yellow"]
-]
+	const [cubeState, setCubeState] = useState(initialCubeState);
 
-  }
- 
-  const [cubeState,setCubeState]=useState(initialCubeState)
+	return (
+		<div className="App">
+			<h1>Stephen's Rubik's Cube Simulator</h1>
 
-  return (
-    <div className="App">
-
-     <h1>Stephen's Rubix Cube Simulator</h1>
-
-   <ExplodedView cubeState={cubeState} setCubeState={setCubeState}/>
-   
-   
-    </div>
-  );
+			<ExplodedView cubeState={cubeState} setCubeState={setCubeState} />
+		</div>
+	);
 }
 
 export default App;

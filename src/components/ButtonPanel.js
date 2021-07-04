@@ -1,15 +1,13 @@
 const ButtonPanel = (props) => {
+	return (
+		<div className="button-panel">
+			{props.buttons.map(({ onClick, text }) => (
+				<button onClick={onClick} key={text}>
+					{text}
+				</button>
+			))}
+		</div>
+	);
+};
 
-    let buttons=[]
-
-for (let i=0;i<props.panelArr.length;i++){
-
-buttons.push(<button onClick={props.panelArr[i].onClick}>{props.panelArr[i].text}</button>)
-}
-
-    return ( <div className="button-panel">
-{buttons}
-    </div> );
-}
- 
 export default ButtonPanel;

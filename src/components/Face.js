@@ -1,23 +1,16 @@
-import React from 'react';
+import React from "react";
 import FaceRow from "./FaceRow";
 
 const Face = (props) => {
-    const rowComponents = []
- 
- for (let i =0; i<props.arr.length; i++){
+	return (
+		<table id={props.id}>
+			<tbody>
+				{props.arr.map((element, index) => (
+					<FaceRow rowArray={element} key={index} rowId={`${props.id}${index}`} />
+				))}
+			</tbody>
+		</table>
+	);
+};
 
-
-rowComponents.push(<FaceRow rowArray={props.arr[i]} key={i} rowId={i}/>)
-
- }
-
-
-    return (  
-    <table id={props.id}>
-        <tbody >
-           {rowComponents}
-        </tbody>
-    </table> );
-}
- 
 export default Face;
